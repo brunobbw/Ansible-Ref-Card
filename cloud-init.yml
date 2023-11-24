@@ -1,0 +1,8 @@
+#cloud-config
+users:
+  - default
+  - name: brunoismael
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    shell: /bin/bash
+    ssh_authorized_keys:
+    - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDDsob/IHU+zcTFKRzNHjEd8sUPMZ6NatJZK6IuraxXBha840UDuqvdm/1zF/Bxq7xtqzKUbDyBUG90RmlWEiFw2yumPQ7W6R1uAbop+/nuVwf7tISA+a83VdsWXu47Y2M35pEmDraUoIMPKKmQYdOkczOkr6i7PZhrGBRp6auqFo/DUOB1QA3Cb7+EvrPyoMU7CGlkCQETH6s8O8jp1EeTZE5zfSAUb7AsKhKSjtcg5LmLbR7nTLKVzY/XskmQ0cy0ClTS7USfWHgGHnKLHFxuFkW4n+xUlSE+Q7oo9L3rUzDU+mzu974SzBxRPMy0geLVLhcX98ctPLuGrNR8ELehJBIF+0vwuWvRHwmr+Z+rTtYfoLeHO94+ib3mRun3B6zOICBhsDuwDev34PlHO76UZzRNmBLwaJ7fkMzHBVNCzq6aTlRBMtIthTH149F4Ev3XIQ79hg2yMA+04cTVEcwOH9myEt3jm1mrQ6COUeGMH8HIEmdlvu5zaHDg6sTGnac= brunobbw@DESKTOP-0OMN2MQ

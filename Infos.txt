@@ -1,0 +1,1 @@
+Ansible installieren: sudo apt update danach sudo apt install ansible
