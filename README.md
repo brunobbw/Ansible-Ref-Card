@@ -31,13 +31,14 @@ Cloud-init.yml      Cloud-Init für BBW-Maas
 ```
 SSH Public Key anzeigen
 ```
-$ 
+$ cd /home/user/.ssh
+$ cat id_rsa.pub
 ```
-# test ob ansible funktioniert
+## Test ob ansible funktioniert
 ```
 $ ansible-inventory --graph
 ```
-# test ob es sich mit maschine verbindet
+## Test ob es sich mit maschine verbindet
 ```
 $ ansible all -m ping
 ```
@@ -45,7 +46,7 @@ mit ansible -m ping db -> nur gruppe db
 mit ansible -m ping web -> nur gruppe web
 
 # Playbooks
-testen:
+Testen:
 ```
 $ ansible-playbook playbook.yml --check
 ```
@@ -56,5 +57,5 @@ $ ansible-playbook playbook.yml
 
 maven testen
 ```
-$ 
+$ Wird noch definiert
 ```
