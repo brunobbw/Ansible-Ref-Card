@@ -57,8 +57,8 @@ $ ansible-playbook playbook.yml
 ## Webserver Playbook
 
 1. **Set Environment Variables**
-   This task sets environment variables required by the Java application, such as `DB_USERNAME` and `DB_PASSWORD`.
-  ```yaml
+   Diese Aufgabe setzt die für die Java-Anwendung erforderlichen Umgebungsvariablen, wie `DB_USERNAME` und `DB_PASSWORD`.
+   ```yaml 
    - name: Set environment variables for Java application
      ansible.builtin.shell:
        cmd: |
@@ -68,28 +68,27 @@ $ ansible-playbook playbook.yml
          export DB_PASSWORD=123456
      tags:
        - environment
-````
 2. **Install Maven**
-   Installs the latest version of Maven on the web server.
+   Installiert die neueste Version von Maven auf dem Webserver.
      ```yaml
      - name: Install Maven
        ansible.builtin.apt:
           name: maven
           state: latest
           update_cache: yes
-```
+
 3. **Install Java**
-   Installs the latest version of OpenJDK 11 on the web server.
+   Installiert die neueste Version von OpenJDK 11 auf dem Webserver.
     ```yaml
     - name: Install Java
       ansible.builtin.apt:
         name: openjdk-11-jdk
         state: latest
         update_cache: yes
-```
+
 4. **Clone Git Repository**
-   Clones the specified Git repository into the directory `m346-ref-card-03`.
-   ```yaml
+  Klonen des angegebenen Git-Repository in das Verzeichnis m346-ref-card-03.
+  ```yaml
    - name: Clone Git Repository
      ansible.builtin.git:
       repo: 'https://gitlab.com/bbwrl/m346-ref-card-03.git'
@@ -97,9 +96,9 @@ $ ansible-playbook playbook.yml
      tags:
       - clone
 
-```
-5. **Create Maven Package**
-   Builds the Maven package for the Java application inside the `m346-ref-card-03` directory.
+
+6. **Create Maven Package**
+   Erstellt das Maven-Paket für die Java-Anwendung im Verzeichnis m346-ref-card-03.
    ```yaml
    - name: Create Maven Package
      ansible.builtin.command:
@@ -108,7 +107,7 @@ $ ansible-playbook playbook.yml
   tags:
     - maven
 
-```
+
 6. **Execute JAR**
    Runs the Java application using the generated JAR file, setting the previously defined environment variables.
    ```yaml
@@ -122,10 +121,10 @@ $ ansible-playbook playbook.yml
 
 
 **Tags**
-- **environment**: Tasks related to setting environment variables.
-- **clone**: Task related to cloning the Git repository.
-- **maven**: Tasks related to Maven, including package creation.
-- **java**: Task related to executing the Java application.
+- **environment**: Aufgaben im Zusammenhang mit dem Setzen von Umgebungsvariablen.
+- **clone**: Aufgabe im Zusammenhang mit dem Klonen des Git-Repository.
+- **maven**: Aufgaben im Zusammenhang mit Maven, einschließlich Paketerstellung.
+- **java**: Aufgabe im Zusammenhang mit der Ausführung der Java-Anwendung.
 
 ## Datenbank Playbook
 ### Installationen
