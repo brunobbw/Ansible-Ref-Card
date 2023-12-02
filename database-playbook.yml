@@ -1,0 +1,27 @@
+---
+- name: Setup database
+  hosts: db
+  become: yes # Ansible soll mit sudo Admin werden
+#dieser untere block sagt das ansible im web grippe isntallieren muss
+  tasks:
+    - name: Install Docker
+      apt:
+        name: docker.io
+        state: present
+
+    - name: Install Docker Compose
+      apt:
+        name: docker-compose
+        state: present
+
+    - name: Git-Repository klonen
+      ansible.builtin.git:
+        repo: 'https://gitlab.com/bbwrl/m346-ref-card-03/'
+        dest: m346-ref-card-03
+      tags:
+        - clone
+
+    - name: Start Docker Compose
+      command: "docker-compose -f m346-ref-card-03/docker-compose.yml up -d"
+     
+     
