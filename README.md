@@ -56,9 +56,76 @@ $ ansible-playbook playbook.yml
 ```
 ## Webserver Playbook
 
+1. **Set Environment Variables**
+   This task sets environment variables required by the Java application, such as `DB_USERNAME` and `DB_PASSWORD`.
+  ```yaml
+   - name: Set environment variables for Java application
+     ansible.builtin.shell:
+       cmd: |
+         echo "export DB_USERNAME=jokedbuser" >> /etc/environment
+         echo "export DB_PASSWORD=123456" >> /etc/environment
+         export DB_USERNAME=jokedbuser
+         export DB_PASSWORD=123456
+     tags:
+       - environment
+````
+2. **Install Maven**
+   Installs the latest version of Maven on the web server.
+     ```yaml
+     - name: Install Maven
+       ansible.builtin.apt:
+          name: maven
+          state: latest
+          update_cache: yes
+```
+3. **Install Java**
+   Installs the latest version of OpenJDK 11 on the web server.
+    ```yaml
+    - name: Install Java
+      ansible.builtin.apt:
+        name: openjdk-11-jdk
+        state: latest
+        update_cache: yes
+```
+4. **Clone Git Repository**
+   Clones the specified Git repository into the directory `m346-ref-card-03`.
+   ```yaml
+   - name: Clone Git Repository
+     ansible.builtin.git:
+      repo: 'https://gitlab.com/bbwrl/m346-ref-card-03.git'
+      dest: m346-ref-card-03
+     tags:
+      - clone
+
+```
+5. **Create Maven Package**
+   Builds the Maven package for the Java application inside the `m346-ref-card-03` directory.
+   ```yaml
+   - name: Create Maven Package
+     ansible.builtin.command:
+       cmd: "mvn package"
+       chdir: "m346-ref-card-03"
+  tags:
+    - maven
+
+```
+6. **Execute JAR**
+   Runs the Java application using the generated JAR file, setting the previously defined environment variables.
+   ```yaml
+   - name: Execute JAR
+     ansible.builtin.command:
+       cmd: "java -DDB_USERNAME=jokedbuser -DDB_PASSWORD=123456 -jar m346-ref-card-03/target/architecture-refcard-03-0.0.1-SNAPSHOT.jar &"
+   args:
+      executable: /bin/bash
+   tags:
+      - java
 
 
-
+**Tags**
+- **environment**: Tasks related to setting environment variables.
+- **clone**: Task related to cloning the Git repository.
+- **maven**: Tasks related to Maven, including package creation.
+- **java**: Task related to executing the Java application.
 
 ## Datenbank Playbook
 ### Installationen
