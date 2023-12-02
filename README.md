@@ -46,9 +46,6 @@ mit ansible -m ping db -> nur gruppe db
 mit ansible -m ping web -> nur gruppe web
 
 # Playbooks 
-
-## Webserver
-
 Testen:
 ```
 $ ansible-playbook playbook.yml --check
@@ -57,12 +54,11 @@ ohne --check macht er wirklich also installieren
 ```
 $ ansible-playbook playbook.yml
 ```
+## Webserver Playbook
 
-maven testen
-```
-<<<<<<< HEAD
-$   
-```
+
+
+
 
 # Datenbank Playbook
 ### Installationen
@@ -70,3 +66,10 @@ $
 $ Wird noch definiert
 ```
 >>>>>>> d2813122a556af14ffea7d191d63d7cc2cd06104
+
+
+maven testen
+```
+<<<<<<< HEAD
+$   
+```
