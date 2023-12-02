@@ -45,7 +45,7 @@ $ ansible all -m ping
 mit ansible -m ping db -> nur gruppe db
 mit ansible -m ping web -> nur gruppe web
 
-# Playbooks 
+## Playbooks 
 Testen:
 ```
 $ ansible-playbook playbook.yml --check
@@ -60,7 +60,7 @@ $ ansible-playbook playbook.yml
 
 
 
-# Datenbank Playbook
+## Datenbank Playbook
 ### Installationen
 =======
 $ Wird noch definiert
