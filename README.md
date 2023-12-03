@@ -58,7 +58,6 @@ Mit: $ ansible -m ping db -> wird nur Gruppe db getestet
 Mit: $ ansible -m ping web -> wird nur Gruppe web getestet
 ```
 
-<<<<<<< HEAD
 # ansible.cfg File erstellen
 ## Definition:
 ```
@@ -84,10 +83,6 @@ web1 ansible_host=192.168.66.63 ansible_user=brunoismael
 
 [db]
 db1 ansible_host=192.168.66.8 ansible_user=brunoismael 
-=======
-## Playbooks 
-Testen:
->>>>>>> 347e64569f99e4b57c49475b40ed0368586857c9
 ```
 
 # cloud-init.yml File erstellen
@@ -108,9 +103,7 @@ users:
     ssh_authorized_keys:
     - ssh-rsa deinPublicSSHKey...
 ```
-## Webserver Playbook
 
-<<<<<<< HEAD
 # Playbooks erstellen
 ## Webserver
 ### Schritte: was alles in diesem Playbook kommt
@@ -133,38 +126,10 @@ users:
 - Java installieren
 ```
 - name: Install java
-=======
-1. **Set Environment Variables**
-   Diese Aufgabe setzt die für die Java-Anwendung erforderlichen Umgebungsvariablen, wie `DB_USERNAME` und `DB_PASSWORD`.
-   ```yaml 
-   - name: Set environment variables for Java application
-     ansible.builtin.shell:
-       cmd: |
-         echo "export DB_USERNAME=jokedbuser" >> /etc/environment
-         echo "export DB_PASSWORD=123456" >> /etc/environment
-         export DB_USERNAME=jokedbuser
-         export DB_PASSWORD=123456
-     tags:
-       - environment
-2. **Install Maven**
-   Installiert die neueste Version von Maven auf dem Webserver.
-     ```yaml
-     - name: Install Maven
-       ansible.builtin.apt:
-          name: maven
-          state: latest
-          update_cache: yes
-
-3. **Install Java**
-   Installiert die neueste Version von OpenJDK 11 auf dem Webserver.
-    ```yaml
-    - name: Install Java
->>>>>>> 347e64569f99e4b57c49475b40ed0368586857c9
       ansible.builtin.apt:
         name: openjdk-11-jdk
         state: latest
         update_cache: yes
-<<<<<<< HEAD
 ```
 - Git-Repository klonen
 ```
@@ -250,59 +215,3 @@ $ ansible-playbook database-playbook.yml
 **Trotz Herausforderungen, vor allem bei der Verbindung zwischen den beiden Instanzen, geling uns diese Arbeit gut.**
 
 **Der Einsatz von Automatisierungstools wie Ansible sparte nicht nur Zeit, sondern verbesserte auch die Konsistenz unserer Infrastruktur. Dieses Projekt war eine lehrreiche Erfahrung für die Anwendung von Cloud-Technologien und Automatisierung in der Praxis.**
-=======
-
-4. **Clone Git Repository**
-  Klonen des angegebenen Git-Repository in das Verzeichnis m346-ref-card-03.
-  ```yaml
-   - name: Clone Git Repository
-     ansible.builtin.git:
-      repo: 'https://gitlab.com/bbwrl/m346-ref-card-03.git'
-      dest: m346-ref-card-03
-     tags:
-      - clone
-
-
-6. **Create Maven Package**
-   Erstellt das Maven-Paket für die Java-Anwendung im Verzeichnis m346-ref-card-03.
-   ```yaml
-   - name: Create Maven Package
-     ansible.builtin.command:
-       cmd: "mvn package"
-       chdir: "m346-ref-card-03"
-  tags:
-    - maven
-
-
-6. **Execute JAR**
-   Runs the Java application using the generated JAR file, setting the previously defined environment variables.
-   ```yaml
-   - name: Execute JAR
-     ansible.builtin.command:
-       cmd: "java -DDB_USERNAME=jokedbuser -DDB_PASSWORD=123456 -jar m346-ref-card-03/target/architecture-refcard-03-0.0.1-SNAPSHOT.jar &"
-   args:
-      executable: /bin/bash
-   tags:
-      - java
-
-
-**Tags**
-- **environment**: Aufgaben im Zusammenhang mit dem Setzen von Umgebungsvariablen.
-- **clone**: Aufgabe im Zusammenhang mit dem Klonen des Git-Repository.
-- **maven**: Aufgaben im Zusammenhang mit Maven, einschließlich Paketerstellung.
-- **java**: Aufgabe im Zusammenhang mit der Ausführung der Java-Anwendung.
-
-## Datenbank Playbook
-### Installationen
-=======
-$ Wird noch definiert
-```
->>>>>>> d2813122a556af14ffea7d191d63d7cc2cd06104
-
-
-maven testen
-```
-<<<<<<< HEAD
-$   
-```
->>>>>>> 347e64569f99e4b57c49475b40ed0368586857c9
