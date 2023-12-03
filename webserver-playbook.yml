@@ -1,18 +1,9 @@
+---
 - name: Setup webserver
   hosts: web
   become: yes
 
   tasks:
-    - name: Set environment variables for Java application
-      ansible.builtin.shell:
-        cmd: |
-          echo "export DB_USERNAME=jokedbuser" >> /etc/environment
-          echo "export DB_PASSWORD=123456" >> /etc/environment
-          export DB_USERNAME=jokedbuser
-          export DB_PASSWORD=123456
-      tags:
-        - environment
-
     - name: Install maven
       ansible.builtin.apt:
         name: maven
@@ -27,23 +18,15 @@
 
     - name: Git-Repository klonen
       ansible.builtin.git:
-        repo: 'https://gitlab.com/bbwrl/m346-ref-card-03.git'
-        dest: m346-ref-card-03
-      tags:
-        - clone
+        repo: 'https://gitlab.com/bbwrl/m346-ref-card-01.git'
+        dest: /home/brunobbw/AuftragAnsible
 
     - name: Maven-Paket erstellen
       ansible.builtin.command:
-        cmd: "mvn package"
-        chdir: "m346-ref-card-03"
-      tags:
-        - maven
+        cmd: mvn package
+        chdir: /home/brunobbw/AuftragAnsible
 
     - name: JAR ausführen
       ansible.builtin.command:
-        cmd: "java -DDB_USERNAME=jokedbuser -DDB_PASSWORD=123456 -jar m346-ref-card-03/target/architecture-refcard-03-0.0.1-SNAPSHOT.jar &"
-      args:
-        executable: /bin/bash
-      tags:
-        - java
-
+        cmd: java -DDB_USERNAME="jokedbuser" -DDB_PASSWORD="123456" -jar target/architecture-refcard-03-0.0.1-SNAPSHOT.jar
+        
